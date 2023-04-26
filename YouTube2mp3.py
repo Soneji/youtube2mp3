@@ -43,6 +43,7 @@ def cleanup():
     os.system("rm out.zip")
 
 def generate_zip():
+    os.system("rm out.zip")
     files = list_mp3s()
     with zipfile.ZipFile('out.zip', 'w') as zipMe:
         for file in files:
@@ -50,16 +51,17 @@ def generate_zip():
             zipMe.write(file, compress_type=zipfile.ZIP_DEFLATED)
     
 url = st.text_input('URL')
-st.button("Download MP3s", on_click=lambda: download())
-st.button("Generate zip", on_click=lambda: generate_zip())
+st.button("Step 1. Download MP3 files", on_click=lambda: download())
+st.button("Step 2. Generate zip", on_click=lambda: generate_zip())
 
 "Download zip button will show once zip is generated successfully"
 # if file exists
 if os.path.exists("out.zip"):
     with open("out.zip", "rb") as f:
-        st.download_button(label='Download zip', data=f, file_name='out.zip', mime='application/zip')
+        st.download_button(label='Step 3. Download zip', data=f, file_name='out.zip', mime='application/zip')
 
-st.button("Clean up system", on_click=lambda: cleanup())
+"You can clean up the system if you wish to download another playlist or encounter any errors"
+st.button("(Optional) Clean up system", on_click=lambda: cleanup())
 
 "Files downloaded:"
 st.code('\n'.join(list_mp3s()), language='text')
