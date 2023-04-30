@@ -1,12 +1,9 @@
 from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
 import streamlit as st
 import yt_dlp
 import zipfile
-import glob, os
-import time
+import glob
+import os
 
 """
 # Welcome to YouTube -> MP3 downloader!

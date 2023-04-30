@@ -1,4 +1,2 @@
-altair
-pandas
 streamlit
 yt-dlp
