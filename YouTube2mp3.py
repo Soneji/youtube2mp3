@@ -25,31 +25,47 @@ def download():
         'format': 'bestaudio', 
         'outtmpl': '%(title)s.mp3'
     }
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        result = ydl.extract_info("{}".format(url))
-        filename = ydl.prepare_filename(result)
-        error_code = ydl.download(url)
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            result = ydl.extract_info("{}".format(url))
+            filename = ydl.prepare_filename(result)
+            error_code = ydl.download(url)
+    except Exception as e:
+        st.error("Error: {}".format(e))
+        return
 
 def list_mp3s():
-    files = []
-    for file in glob.glob("*.mp3"):
-        files.append(file)
-    # sort files by name
-    files.sort()
-    return files
+    try:
+        files = []
+        for file in glob.glob("*.mp3"):
+            files.append(file)
+        # sort files by name
+        files.sort()
+        return files
+    except Exception as e:
+        st.error("Error: {}".format(e))
+        return
 
 def cleanup():
-    os.system("rm *.mp3")
-    os.system("rm out.zip")
+    try:
+        os.system("rm *.mp3")
+        os.system("rm out.zip")
+    except Exception as e:
+        st.error("Error: {}".format(e))
+        return
 
 def generate_zip():
-    os.system("rm out.zip")
-    files = list_mp3s()
-    with zipfile.ZipFile('out.zip', 'w') as zipMe:
-        for file in files:
-            print("Adding {} to zip".format(file))
-            zipMe.write(file, compress_type=zipfile.ZIP_DEFLATED)
-    
+    try:
+        os.system("rm out.zip")
+        files = list_mp3s()
+        with zipfile.ZipFile('out.zip', 'w') as zipMe:
+            for file in files:
+                print("Adding {} to zip".format(file))
+                zipMe.write(file, compress_type=zipfile.ZIP_DEFLATED)
+    except Exception as e:
+        st.error("Error: {}".format(e))
+        return
+
 url = st.text_input('URL')
 st.button("Step 1. Download MP3 files", on_click=lambda: download())
 st.button("Step 2. Generate zip", on_click=lambda: generate_zip())
