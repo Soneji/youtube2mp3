@@ -3,7 +3,7 @@
 This application allows you to download YouTube videos or playlists and convert them to MP3 files. 
 
 Built using 
-- [Streamlit](https://streamlit.io/) which is a python library for building and hosting web apps.
+- [Streamlit](https://streamlit.io) which is a python library for building and hosting web apps.
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) to download YouTube videos and playlists.
 
 It is quite impressive that a whole web app can be built with just a few lines of Python code.
