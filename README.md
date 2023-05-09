@@ -1,6 +1,11 @@
-# Welcome to Streamlit!
+# YouTube to MP3
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
+This application allows you to download YouTube videos or playlists and convert them to MP3 files. 
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+Built using streamlit which is a python library for building web apps.
+
+It is quite impressive that a whole web app can be built with just a few lines of code.
+
+## Demo
+
+![Demo](demo.png)
